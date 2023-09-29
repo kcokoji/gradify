@@ -61,7 +61,7 @@ export default function SignUp() {
               Create An Account
             </h2>
             <p className="mt-2 text-lg leading-8 text-gray-600 ">
-              Ready to Supercharge Your Academic Journey?, Let&aspos;s get
+              Ready to Supercharge Your Academic Journey?, Let&#39;s get
               started.
             </p>
           </div>
@@ -74,7 +74,7 @@ export default function SignUp() {
             <div className="sm:col-span-2">
               <div className="mt-2.5">
                 <label
-                  htmlFor="message"
+                  htmlFor="name"
                   className="block text-sm font-semibold leading-6 text-gray-900"
                 >
                   Username
@@ -84,7 +84,7 @@ export default function SignUp() {
                   name="name"
                   id="name"
                   autoComplete="name"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-700 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border px-3.5 py-2 text-gray-900  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-700 sm:text-sm sm:leading-6"
                   required
                   value={data.name}
                   onChange={(e) => setData({ ...data, name: e.target.value })}
@@ -103,7 +103,7 @@ export default function SignUp() {
                   name="email"
                   id="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-700 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border px-3.5 py-2 text-gray-900  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-700 sm:text-sm sm:leading-6"
                   required
                   value={data.email}
                   onChange={(e) => setData({ ...data, email: e.target.value })}
@@ -123,7 +123,7 @@ export default function SignUp() {
                     name="password"
                     id="password"
                     autoComplete="none"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-700 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border px-3.5 py-2 pr-10 text-gray-900  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-700 sm:text-sm sm:leading-6"
                     required
                     value={data.password}
                     onChange={(e) =>

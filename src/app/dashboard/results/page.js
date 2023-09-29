@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { TrashIcon } from "@heroicons/react/24/outline";
+import toast from "react-hot-toast";
 
 export default function ResultSaver() {
   const [result, setResult] = useState(null);
@@ -12,22 +13,25 @@ export default function ResultSaver() {
   const { data: session } = useSession();
 
   useEffect(() => {
-    axios
-      .get("/api/results")
-      .then((response) => {
-        const userData = response.data.find(
-          (user) => user.email === session.user.email
-        );
-        if (userData) {
-          setResult(userData.resultFolder);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    if (session) {
+      axios
+        .get("/api/results")
+        .then((response) => {
+          console.log(response);
+          const userData = response.data.find(
+            (user) => user.email === session.user.email
+          );
+          if (userData) {
+            setResult(userData.resultFolder);
+          }
+        })
+        .catch(() => {
+          toast.error("Error finding results");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, [session]);
 
   const handleDeleteFolder = async (folderId) => {
@@ -67,7 +71,7 @@ export default function ResultSaver() {
         <h2 className="text-lg font-semibold">Your Result Folders:</h2>
         {loading ? (
           <div className="flex justify-center items-center mt-4">
-            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-700"></div>
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-green-700"></div>
           </div>
         ) : result === null ? (
           <p className="mt-2 text-gray-500">No result folders found.</p>

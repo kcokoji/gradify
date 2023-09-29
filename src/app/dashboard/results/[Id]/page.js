@@ -15,6 +15,7 @@ export default function Results({ params: { Id } }) {
       .get("/api/viewResult")
       .then((response) => {
         setData(response.data);
+        console.log(response.data);
         setIsLoading(false);
       })
       .catch((error) => {

@@ -163,7 +163,7 @@ export default function Login() {
           </div>
         </form>
         <p className="mt-2 text-lg leading-8 text-gray-600">
-          Don&aspos;t Have an account yet?{" "}
+          Don&#39;t Have an account yet?{" "}
           <Link href="/sign-up" className="underline hover:text-green-700">
             Get Started
           </Link>
