@@ -65,7 +65,7 @@ export default function Example() {
   };
 
   return (
-    <div className="isolate bg-white px-6 py-24 sm:py-12 lg:px-8 sm:max-w-3xl max-w-xl mx-auto border border-green-700 my-10 rounded-md">
+    <div className="isolate bg-white px-6 py-24 sm:py-12 lg:px-8 sm:max-w-3xl max-w-xl mx-auto sm:border border-green-700 my-10 rounded-md">
       {session ? (
         <>
           <div className="mx-auto max-w-2xl text-center">

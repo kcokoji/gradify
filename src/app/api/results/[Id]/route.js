@@ -1,11 +1,21 @@
-import prisma from "../../libs/prismaDB";
+import prisma from "../../../libs/prismaDB";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req, { params: { Id } }) {
   try {
-    const usersWithSubjects = await prisma.user.findMany({
+    const usersWithSubjects = await prisma.user.findFirst({
+      where: {
+        resultFolder: {
+          some: {
+            id: Id, // Replace with the actual ResultFolder ID
+          },
+        },
+      },
       include: {
         resultFolder: {
+          where: {
+            id: Id, // Replace with the actual ResultFolder ID
+          },
           include: {
             semesters: {
               include: {

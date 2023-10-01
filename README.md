@@ -1,7 +1,5 @@
 # Gradify: Your Academic Companion
 
-![Gradify Logo](gradify-logo.png)
-
 Gradify is a web application created with Next.js, React, Prisma, Tailwind CSS, and MongoDB, designed exclusively for university students. It helps students calculate their GPA and save their academic results online. Whether you're a university student looking to manage your academic performance, Gradify has got you covered.
 
 ## Features
@@ -30,7 +28,7 @@ Before you begin, ensure you have the following software installed on your syste
 1. Clone the Gradify repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/gradify.git
+   git clone https://github.com/kcokoji/gradify.git
    ```
 
 2. Navigate to the project directory:
@@ -89,7 +87,7 @@ We welcome contributions from the community! If you're a university student and 
 
 ## License
 
-This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 

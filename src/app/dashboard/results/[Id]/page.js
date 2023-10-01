@@ -3,30 +3,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 import Link from "next/link";
 
 export default function Results({ params: { Id } }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { data: sessionData } = useSession();
 
   useEffect(() => {
     axios
-      .get("/api/viewResult")
+      .get(`/api/results/${Id}`)
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
         setIsLoading(false);
       })
-      .catch((error) => {
-        console.error(error);
-        setIsLoading(false);
+      .catch(() => {
+        toast.error("Error Fetching Results");
       });
-  }, []);
-
-  const filteredData = data.filter(
-    (user) => user.email === sessionData?.user?.email
-  );
+  }, [Id]); // Include Id in the dependency array
 
   return (
     <div className="max-h-screen py-10">
@@ -89,84 +83,64 @@ export default function Results({ params: { Id } }) {
             </div>
           ) : (
             <div>
-              {filteredData.map((user) => (
-                <div key={user.id}>
-                  {user.resultFolder.map((folder) => {
-                    const matchingSemester = folder.semesters.find(
-                      (semester) => semester.folderId === Id
-                    );
+              {data.resultFolder.map((folder) => (
+                <div key={folder.id} className="p-4 border rounded mb-4">
+                  <h4 className="text-lg font-semibold">
+                    Result Folder Name:{" "}
+                    <span className="text-lg text-gray-700 font-medium">
+                      {folder.name}
+                    </span>
+                  </h4>
 
-                    if (matchingSemester) {
-                      return (
-                        <div key={folder.id} className="p-4 border rounded">
-                          <h4 className="text-lg font-semibold">
-                            Result Folder Name:{" "}
-                            <span className="text-lg text-gray-700 font-medium">
-                              {folder.name}
-                            </span>
-                          </h4>
-                          <h4 className="text-lg font-semibold">
-                            Semester Name:{" "}
-                            <span className="text-lg font-medium text-gray-700">
-                              {matchingSemester.name}
-                            </span>
-                          </h4>
+                  {folder.semesters.map((semester) => (
+                    <div key={semester.id} className="mt-4">
+                      <h4 className="text-lg font-semibold">
+                        Semester Name:{" "}
+                        <span className="text-lg font-medium text-gray-700">
+                          {semester.name}
+                        </span>
+                      </h4>
 
-                          <div className="overflow-x-auto mt-5">
-                            <table className="w-full table-auto">
-                              <thead>
-                                <tr>
-                                  <th className="px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase border border-gray-200">
-                                    Subject Name
-                                  </th>
-                                  <th className="px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase border border-gray-200">
-                                    Grade
-                                  </th>
-                                  <th className="px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase border border-gray-200">
-                                    Code
-                                  </th>
-                                  <th className="px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase border border-gray-200">
-                                    Unit
-                                  </th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {matchingSemester.subjects.map((subject) => {
-                                  const matchingResult = folder.semesters.find(
-                                    (semester) =>
-                                      semester.id === subject.semesterId
-                                  );
-
-                                  if (matchingResult) {
-                                    return (
-                                      <tr key={subject.id}>
-                                        <td className="px-2 py-1 text-left sm:text-lg text-sm border border-gray-200">
-                                          {subject.name}
-                                        </td>
-                                        <td className="px-2 py-1 text-left sm:text-lg text-sm  border border-gray-200">
-                                          {subject.grade}
-                                        </td>
-                                        <td className="px-2 py-1 text-left sm:text-lg text-sm  border border-gray-200">
-                                          {subject.code}
-                                        </td>
-                                        <td className="px-2 py-1 text-left border sm:text-lg text-sm  border-gray-200">
-                                          {subject.unit}
-                                        </td>
-                                      </tr>
-                                    );
-                                  } else {
-                                    return null;
-                                  }
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      );
-                    } else {
-                      return null;
-                    }
-                  })}
+                      <div className="overflow-x-auto mt-5">
+                        <table className="w-full table-auto">
+                          <thead>
+                            <tr>
+                              <th className="px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase border border-gray-200">
+                                Subject Name
+                              </th>
+                              <th className="px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase border border-gray-200">
+                                Grade
+                              </th>
+                              <th className="px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase border border-gray-200">
+                                Code
+                              </th>
+                              <th className="px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase border border-gray-200">
+                                Unit
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {semester.subjects.map((subject) => (
+                              <tr key={subject.id}>
+                                <td className="px-2 py-1 text-left border border-gray-200">
+                                  {subject.name}
+                                </td>
+                                <td className="px-2 py-1 text-left border border-gray-200">
+                                  {subject.grade}
+                                </td>
+                                <td className="px-2 py-1 text-left border border-gray-200">
+                                  {subject.code}
+                                </td>
+                                <td className="px-2 py-1 text-left border border-gray-200">
+                                  {subject.unit}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>

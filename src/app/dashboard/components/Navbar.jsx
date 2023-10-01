@@ -3,7 +3,7 @@
 import { useState, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { XMarkIcon, Bars2Icon } from "@heroicons/react/24/outline";
+import { XMarkIcon, Bars2Icon, UserIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -11,7 +11,7 @@ const navigation = [
   { name: "Dashboard", href: "/dashboard" },
   { name: "Results", href: "/dashboard/results" },
   { name: "Calculator", href: "/dashboard/calculator" },
-  { name: "Predictions", href: "/dashboard/prediction" },
+  { name: "Predictions", href: "/dashboard/predictions" },
 ];
 
 export default function DashboardNavbar(prop) {
@@ -35,9 +35,9 @@ export default function DashboardNavbar(prop) {
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
               {mobileMenuOpen ? (
-                <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                <XMarkIcon className="block h-8 w-8" aria-hidden="true" />
               ) : (
-                <Bars2Icon className="block h-6 w-6" aria-hidden="true" />
+                <Bars2Icon className="block h-8 w-8" aria-hidden="true" />
               )}
             </button>
           </div>
@@ -81,8 +81,8 @@ export default function DashboardNavbar(prop) {
                       height={20}
                     />
                   ) : (
-                    <span className="h-12 w-12 rounded-md border-2 border-gray-500 flex items-center justify-center text-gray-700 font-bold text-xl">
-                      {prop.name.slice(0, 1)}
+                    <span className="h-12 w-12 rounded-md border-2 border-black flex items-center justify-center font-bold text-xl">
+                      <UserIcon className=" h-10 w-10" />
                     </span>
                   )}
                 </Menu.Button>
@@ -108,8 +108,8 @@ export default function DashboardNavbar(prop) {
                           height={50}
                         />
                       ) : (
-                        <span className="h-13 w-13 rounded-md border-2 border-gray-500 flex items-center justify-center text-gray-700 font-bold text-xl">
-                          <h1 className="p-7"> {prop.name.slice(0, 1)}</h1>
+                        <span className="h-12 w-12 rounded-md border-2 border-black flex items-center justify-center font-bold text-xl">
+                          <UserIcon className=" h-10 w-10" />
                         </span>
                       )}
                       <div>
@@ -135,18 +135,7 @@ export default function DashboardNavbar(prop) {
                       </Link>
                     )}
                   </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link
-                        href="#"
-                        className={`${
-                          active ? "bg-gray-100" : ""
-                        } block px-4 py-2 text-sm text-black`}
-                      >
-                        Settings
-                      </Link>
-                    )}
-                  </Menu.Item>
+
                   <Menu.Item>
                     {({ active }) => (
                       <Link

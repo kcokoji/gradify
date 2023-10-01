@@ -4,6 +4,7 @@ import Features from "./components/Features";
 import Languages from "./components/Languages";
 import Feedback from "./components/Feedback";
 import Footer from "./components/Footer";
+import HowItWorks from "./components/HowItWorks";
 export default function Example() {
   return (
     <div>
@@ -11,6 +12,7 @@ export default function Example() {
       <Hero />
       <Features />
       <Languages />
+      <HowItWorks />
       <Feedback />
       <Footer />
     </div>

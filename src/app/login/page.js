@@ -33,7 +33,7 @@ export default function Login() {
     signIn("credentials", { ...data, redirect: false })
       .then((callback) => {
         if (callback?.error) {
-          toast.error(callback.error);
+          toast.error("Try again");
         }
 
         if (callback?.ok && !callback?.error) {

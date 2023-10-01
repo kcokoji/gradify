@@ -45,7 +45,10 @@ export default function DashboardHome(prop) {
             </Link>
 
             {/* Predictions Card */}
-            <div className="bg-white border border-gray-200 rounded-lg p-6 hover:border-green-700 hover:shadow-md transition duration-300">
+            <Link
+              className="block bg-white border border-gray-200 rounded-lg p-6 hover:border-green-700 hover:shadow-md transition duration-300"
+              href="/dashboard/predictions"
+            >
               <div className="text-center"></div>
               <h2 className="mt-4 text-2xl font-semibold text-green-700">
                 Predictions
@@ -53,7 +56,7 @@ export default function DashboardHome(prop) {
               <p className="mt-2 text-gray-600">
                 Get insights and your GPA predictions.
               </p>
-            </div>
+            </Link>
           </div>
         </div>
       </main>

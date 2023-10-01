@@ -17,19 +17,16 @@ export default function ResultSaver() {
       axios
         .get("/api/results")
         .then((response) => {
-          console.log(response);
           const userData = response.data.find(
             (user) => user.email === session.user.email
           );
           if (userData) {
             setResult(userData.resultFolder);
+            setLoading(false);
           }
         })
         .catch(() => {
           toast.error("Error finding results");
-        })
-        .finally(() => {
-          setLoading(false);
         });
     }
   }, [session]);
@@ -53,7 +50,7 @@ export default function ResultSaver() {
   };
 
   return (
-    <div className="bg-white px-6 py-12 sm:py-24 lg:px-8 max-w-xl mx-auto border border-green-700 my-10 rounded-md">
+    <div className="bg-white px-6 py-12 sm:py-24 lg:px-8 max-w-xl mx-auto sm:border border-green-700 my-10 rounded-md">
       <div className="max-w-2xl text-center mx-auto">
         <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
           Result Folders
