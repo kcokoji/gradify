@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { signOut } from "next-auth/react";
 
 export default function Example() {
   const { data: session } = useSession();
@@ -33,7 +34,7 @@ export default function Example() {
         },
       })
       .then(() => {
-        router.push("/");
+        signOut({ callbackUrl: "/" });
       })
       .catch((err) => {
         toast.error("Error Deleting User");
