@@ -122,16 +122,16 @@ export default function Results({ params: { Id } }) {
                           <tbody>
                             {semester.subjects.map((subject) => (
                               <tr key={subject.id}>
-                                <td className="px-2 py-1 text-left border border-gray-200">
+                                <td className="px-2 py-1 text-left sm:text-sm border border-gray-200">
                                   {subject.name}
                                 </td>
-                                <td className="px-2 py-1 text-left border border-gray-200">
+                                <td className="px-2 py-1 text-left sm:text-sm border border-gray-200">
                                   {subject.grade}
                                 </td>
-                                <td className="px-2 py-1 text-left border border-gray-200">
+                                <td className="px-2 py-1 text-left  sm:text-sm border border-gray-200">
                                   {subject.code}
                                 </td>
-                                <td className="px-2 py-1 text-left border border-gray-200">
+                                <td className="px-2 py-1 text-left sm:text-sm border border-gray-200">
                                   {subject.unit}
                                 </td>
                               </tr>
