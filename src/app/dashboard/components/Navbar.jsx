@@ -82,7 +82,7 @@ export default function DashboardNavbar(prop) {
                     />
                   ) : (
                     <span className="h-12 w-12 rounded-md border-2 border-black flex items-center justify-center font-bold text-xl">
-                      <UserIcon className=" h-10 w-10" />
+                      <UserIcon className=" h-9 w-9" />
                     </span>
                   )}
                 </Menu.Button>
