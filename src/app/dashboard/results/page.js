@@ -30,7 +30,7 @@ export default async function ResultSaver() {
       <div className="mt-4">
         <h2 className="text-lg font-semibold">Your Result Folders:</h2>
 
-        {!result ? (
+        {result.length==0 ? (
           <p className="mt-2 text-gray-500">No result folders found.</p>
         ) : (
           <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 px-6 gap-4">
