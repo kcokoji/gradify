@@ -9,10 +9,10 @@ export default function ResultFolder({ folder }) {
   const router = useRouter();
 
   const handleDeleteFolder = async (folderId) => {
-    const payload = { folderId, userEmail };
+    const payload = { folderId };
 
     try {
-      await axios.delete(API_RESULTS_PATH, {
+      await axios.delete("/api/results", {
         data: payload,
         headers: {
           "Content-Type": "application/json",

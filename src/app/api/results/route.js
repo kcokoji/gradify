@@ -1,9 +1,15 @@
 import prisma from "../../libs/prismaDB";
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
 
 export async function POST(request) {
   const body = await request.json();
   const date = new Date().toLocaleDateString();
+  const session = await getServerSession();
+  const email = session?.user?.email;
+  if (!email) {
+    return new NextResponse("Missing Fields", { status: 400 });
+  }
 
   const { folderName, semesterName, subjects, userEmail } = body;
   if (!folderName || !semesterName || !subjects) {
@@ -55,17 +61,18 @@ export async function POST(request) {
 
 export async function DELETE(request) {
   const body = await request.json();
-  const { folderId, userEmail } = body;
+  const { folderId } = body;
+  const session = await getServerSession();
+  const email = session?.user?.email;
+
+  if (!email) {
+    return new NextResponse("Missing Fields", { status: 400 });
+  }
 
   try {
-    const deleteFolder = await prisma.user.update({
+    const deleteFolder = await prisma.resultFolder.delete({
       where: {
-        email: userEmail,
-      },
-      data: {
-        resultFolder: {
-          delete: { id: folderId },
-        },
+        id: folderId,
       },
     });
 

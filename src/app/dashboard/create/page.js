@@ -55,6 +55,7 @@ export default function Example() {
       .then(() => {
         toast.success("Result Sucessfully saved");
         // Redirect to the result page
+        router.refresh();
         router.push("/dashboard/results");
       })
       .catch(() => toast.error("Error Saving results"))
