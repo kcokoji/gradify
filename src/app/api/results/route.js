@@ -53,30 +53,6 @@ export async function POST(request) {
   }
 }
 
-export async function GET() {
-  try {
-    const user = await prisma.user.findMany({
-      //displays all users
-      include: {
-        resultFolder: {
-          select: {
-            name: true,
-            createdAt: true,
-            id: true,
-          },
-        },
-      },
-    });
-
-    return NextResponse.json(user);
-  } catch (err) {
-    return NextResponse.json(
-      { message: "User Not Found", err },
-      { status: 500 }
-    );
-  }
-}
-
 export async function DELETE(request) {
   const body = await request.json();
   const { folderId, userEmail } = body;

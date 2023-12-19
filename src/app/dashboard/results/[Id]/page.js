@@ -12,7 +12,7 @@ export default function Results({ params: { Id } }) {
 
   useEffect(() => {
     axios
-      .get(`/api/results/${Id}`)
+      .get(`/api/results/result/${Id}`)
       .then((response) => {
         setData(response.data);
         setIsLoading(false);
