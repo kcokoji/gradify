@@ -67,8 +67,8 @@ export default function Example() {
 
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-12 lg:px-8 sm:max-w-3xl max-w-xl mx-auto sm:border border-green-700 my-10 rounded-md">
-      {session ? (
-        <>
+      
+        
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Result Folder Form
@@ -248,14 +248,7 @@ export default function Example() {
               </button>
             </div>
           </form>
-        </>
-      ) : (
-        <>
-          <div className="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-green-700"></div>
-          </div>
-        </>
-      )}
-    </div>
-  );
+        
+      
+  
 }
