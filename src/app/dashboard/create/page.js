@@ -248,7 +248,6 @@ export default function Example() {
               </button>
             </div>
           </form>
-        
-      
+       </div>
   );
 }
