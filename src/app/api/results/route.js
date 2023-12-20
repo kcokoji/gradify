@@ -11,7 +11,7 @@ export async function POST(request) {
     return new NextResponse("Missing Fields", { status: 400 });
   }
 
-  const { folderName, semesterName, subjects, userEmail } = body;
+  const { folderName, semesterName, subjects } = body;
   if (!folderName || !semesterName || !subjects) {
     return new NextResponse("Missing Fields", { status: 400 });
   }
@@ -19,7 +19,7 @@ export async function POST(request) {
   try {
     const user = await prisma.user.update({
       where: {
-        email: userEmail,
+        email,
       },
 
       data: {
