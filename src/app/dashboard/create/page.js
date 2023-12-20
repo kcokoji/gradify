@@ -4,13 +4,11 @@ import { useState } from "react";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function Example() {
   const [isCreatingAccount, setIsCreatingAccount] = useState(false);
-  const { data: session } = useSession();
-
+  
   const router = useRouter();
 
   const [rows, setRows] = useState([
@@ -40,7 +38,6 @@ export default function Example() {
     // Extract the data you want to send to the API
     const formData = {
       folderName: e.target["folder-name"].value,
-      userEmail: session?.user?.email,
       semesterName: e.target["semester-name"].value,
       subjects: rows.map((row) => ({
         name: row.input1,
